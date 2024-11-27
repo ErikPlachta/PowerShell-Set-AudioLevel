@@ -17,6 +17,17 @@ This script was created because I needed a way to control the audio level within
 
 The script uses PowerShell to create a COM object of the type `WScript.Shell`. This object allows you to interact with the Windows Shell and perform various actions, including sending keystrokes to the active window. I'm using the `SendKeys` method from the `WScript.Shell` object to send keystrokes to control the audio level within Windows.
 
+### Got Key Codes for Volume Control
+
+To verify the key codes for volume control, you can use the following steps:
+
+1. Navigate to [Microsoft.com - virtual-key-codes](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes), and search for the Constant you want to execute.
+   > For example, `Volume Mute` is `VK_VOLUME_MUTE` which is `0xAD` in Hex.
+   > <img src=".bin/microsoft-docs-virtual-key-codes.png" alt="Image of Volume Mute key from docs.microsft.com showing the Hex code." style="border-radius: 6px; ">
+2. Navigate to [Unicode Lookup](https://unicodelookup.com/) and search for the HEX value to get the Decimal Representation of the hex code.
+   > For example, `0xAD`'s base 10 value is `173­`.
+   > <img src=".bin/unicode-lookup-173.png" alt="Image showing Unicode Lookup value for hexcode 173, taken 07/19/2021 from https://unicodelookup.com/" style="border-radius: 6px; ">
+
 ### Shell Object is Created, and Keystrokes are Sent to Control Volume
 
 1. Volume Mute: `[char]173`
@@ -36,17 +47,6 @@ The script uses PowerShell to create a COM object of the type `WScript.Shell`. T
    > ```powershell
    > (new-object -com wscript.shell).SendKeys([char]175)
    > ```
-
-### How to Identify the Key Codes
-
-To verify the key codes for volume control, you can use the following steps:
-
-1. Navigate to [Microsoft.com - virtual-key-codes](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes), and search for the Constant you want to execute.
-   > For example, `Volume Mute` is `VK_VOLUME_MUTE` which is `0xAD` in Hex.
-   > <img src=".bin/microsoft-docs-virtual-key-codes.png" alt="Image of Volume Mute key from docs.microsft.com showing the Hex code." style="border-radius: 6px; ">
-2. Navigate to [Unicode Lookup](https://unicodelookup.com/) and search for the HEX value to get the Decimal Representation of the hex code.
-   > For example, `0xAD`'s base 10 value is `173­`.
-   > <img src=".bin/unicode-lookup-173.png" alt="Image showing Unicode Lookup value for hexcode 173, taken 07/19/2021 from https://unicodelookup.com/" style="border-radius: 6px; ">
 
 ---
 
@@ -68,10 +68,10 @@ function Set-AudioLevel {
         Using PowerShell to create a COM Object of the type Windows Shell. Then running Windows Shell function function SendKeys() with the parameters `[char]173`, `[char]174`, or `[char]175`.
 
     .PARAMETER Level
-        The desired volume level as a percentage (0-100).
+        The desired volume level as a whole number (0-100).
 
     .EXAMPLE
-        # Set Audio Level to a target percentage
+        # Set Audio Level to a target percentage.
         Set-AudioLevel -Volume 60
 
         # Mute Audio
@@ -134,7 +134,7 @@ function Set-AudioLevel {
 > This is the same function as above converted to a single line for easy CLI usage. Notice at the end it's calling the function `Set-AudioLevel 0` to set the volume to 0%.
 
 ```powershell
-function Set-AudioLevel {param([Alias("AudioLevel","L","l","volume","vol")][Parameter(Mandatory,Position=1)][System.Double]$Level) {try{$wshShell=New-Object -ComObject wscript.shell;1..50|ForEach-Object{$wshShell.SendKeys([char]174);Start-Sleep -Milliseconds 5};$upPresses=$level/2.0;for($i=0;$i -lt $upPresses;$i+=1){$wshShell.SendKeys([char]175);Start-Sleep -Milliseconds 5};"SUCCESS: Volume set to approximately $level%."}catch{Write-Output "ERROR: Unable to set volume level.";Write-Error $_}}};Set-AudioLevel 0
+function Set-AudioLevel {param([Alias("AudioLevel","L","l","volume","vol")][Parameter(Mandatory,Position=1)][System.Double]$Level) {try{$wshShell=New-Object -ComObject wscript.shell;1..50|ForEach-Object{$wshShell.SendKeys([char]174);Start-Sleep -Milliseconds 5};$upPresses=$level/2.0;for($i=0;$i -lt $upPresses;$i+=1){$wshShell.SendKeys([char]175);Start-Sleep -Milliseconds 5};"SUCCESS: Volume set to approximately $level%."}catch{Write-Output "ERROR: Unable to set volume level.";Write-Error $_}}} Set-AudioLevel 0
 ```
 
 ---
