@@ -2,7 +2,7 @@
 
 Manage Windows Audio Level with PowerShell - A quick reference guide for controlling the audio level within Windows OS programmatically.
 
-<img src=".bin/soundboard-mute-mika-baumeister.jpg" alt="Photo of sound board highlighting the mute light. This photo was taken by Mika Baumeister, and published on Unsplashed.com" style="border-radius: 6px; " width="700" height="467">
+<img src=".bin/soundboard-mute-mika-baumeister.jpg" alt="Image of sound board highlighting the mute light. This photo was taken by Mika Baumeister, and published on Unsplashed.com" style="border-radius: 6px; " width="700" height="467">
 
 ## Overview
 
