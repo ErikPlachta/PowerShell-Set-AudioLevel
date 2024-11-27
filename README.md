@@ -17,7 +17,7 @@ This script was created because I needed a way to control the audio level within
 
 The script uses PowerShell to create a COM object of the type `WScript.Shell`. This object allows you to interact with the Windows Shell and perform various actions, including sending keystrokes to the active window. I'm using the `SendKeys` method from the `WScript.Shell` object to send keystrokes to control the audio level within Windows.
 
-### The Key Codes for Volume Control
+### Shell Object is Created, and Keystrokes are Sent to Control Volume
 
 1. Volume Mute: `[char]173`
 
@@ -47,6 +47,8 @@ To verify the key codes for volume control, you can use the following steps:
 2. Navigate to [Unicode Lookup](https://unicodelookup.com/) and search for the HEX value to get the Decimal Representation of the hex code.
    > For example, `0xAD`'s base 10 value is `173­`.
    > <img src=".bin/unicode-lookup-173.png" alt="Image showing Unicode Lookup value for hexcode 173, taken 07/19/2021 from https://unicodelookup.com/" style="border-radius: 6px; ">
+
+---
 
 ## Custom Function - `Set-AudioLevel`
 
