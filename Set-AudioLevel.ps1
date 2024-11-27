@@ -7,10 +7,10 @@ function Set-AudioLevel {
         Using PowerShell to create a COM Object of the type Windows Shell. Then running Windows Shell function function SendKeys() with the parameters `[char]173`, `[char]174`, or `[char]175`.
 
     .PARAMETER Level
-        The desired volume level as a percentage (0-100).
+        The desired volume level as a whole number (0-100).
 
     .EXAMPLE
-        # Set Audio Level to a target percentage
+        # Set Audio Level to a target percentage.
         Set-AudioLevel -Volume 60
 
         # Mute Audio
