@@ -89,7 +89,7 @@ function Set-AudioLevel {
             - 0.0.22| 20241127 | Erik Plachta | CHORE: Cleanup and verify for publication to medium.com and GitHub readme.
     #>
     param(
-        [Alias("AudioLevel", "L", "l", "volume", "vol")]    # Allow multiple parameter names
+        [Alias("AudioLevel", "L", "volume", "vol")]    # Allow multiple parameter names
         [Parameter(Mandatory,Position = 1)]                 # Make the parameter mandatory and positional so can be used without specifying the parameter name
         [System.Double]$Level                               # Define the parameter type
     )
@@ -134,7 +134,7 @@ function Set-AudioLevel {
 > This is the same function as above converted to a single line for easy CLI usage. Notice at the end it's calling the function `Set-AudioLevel 0` to set the volume to 0%.
 
 ```powershell
-function Set-AudioLevel {param([Alias("AudioLevel","L","l","volume","vol")][Parameter(Mandatory,Position=1)][System.Double]$Level) {try{$wshShell=New-Object -ComObject wscript.shell;1..50|ForEach-Object{$wshShell.SendKeys([char]174);Start-Sleep -Milliseconds 5};$upPresses=$level/2.0;for($i=0;$i -lt $upPresses;$i+=1){$wshShell.SendKeys([char]175);Start-Sleep -Milliseconds 5};"SUCCESS: Volume set to approximately $level%."}catch{Write-Output "ERROR: Unable to set volume level.";Write-Error $_}}} Set-AudioLevel 0
+function Set-AudioLevel {param([Alias("AudioLevel","L","volume","vol")][Parameter(Mandatory,Position=1)][System.Double]$Level) {try{$wshShell=New-Object -ComObject wscript.shell;1..50|ForEach-Object{$wshShell.SendKeys([char]174);Start-Sleep -Milliseconds 5};$upPresses=$level/2.0;for($i=0;$i -lt $upPresses;$i+=1){$wshShell.SendKeys([char]175);Start-Sleep -Milliseconds 5};"SUCCESS: Volume set to approximately $level%."}catch{Write-Output "ERROR: Unable to set volume level.";Write-Error $_}}} Set-AudioLevel 0
 ```
 
 ---

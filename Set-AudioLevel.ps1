@@ -28,7 +28,7 @@ function Set-AudioLevel {
             - 0.0.22| 20241127 | Erik Plachta | CHORE: Cleanup and verify for publication to medium.com and GitHub readme.
     #>
     param(
-        [Alias("AudioLevel", "L", "l", "volume", "vol")]    # Allow multiple parameter names
+        [Alias("AudioLevel", "L", "volume", "vol")]    # Allow multiple parameter names
         [Parameter(Mandatory,Position = 1)]                 # Make the parameter mandatory and positional so can be used without specifying the parameter name
         [System.Double]$Level                               # Define the parameter type
     )
